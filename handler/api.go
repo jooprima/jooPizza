@@ -10,23 +10,23 @@ import (
 )
 
 type menu struct {
-	IDMenu    string
-	NamaMenu  string
-	Deskripsi string
-	Jenis     string
-	Harga     string
-	UrlGambar string
+	Id_menu    string
+	Nama_menu  string
+	Deskripsi  string
+	Jenis      string
+	Harga      string
+	Url_gambar string
 }
 
 var data []menu
 
 func BacaData(c echo.Context) error {
-	menuMakanan()
+	menu_makanan()
 
 	return c.JSON(http.StatusOK, data)
 }
 
-func menuMakanan() {
+func menu_makanan() {
 	data = nil
 	db, err := server.Koneksi()
 	if err != nil {
@@ -45,7 +45,7 @@ func menuMakanan() {
 
 	for rows.Next() {
 		var each = menu{}
-		var err = rows.Scan(&each.IDMenu, &each.NamaMenu, &each.Deskripsi, &each.UrlGambar, &each.Jenis, &each.Harga)
+		var err = rows.Scan(&each.Id_menu, &each.Nama_menu, &each.Deskripsi, &each.Url_gambar, &each.Jenis, &each.Harga)
 
 		if err != nil {
 			fmt.Println(err.Error())
