@@ -41,7 +41,9 @@ func main() {
 	// Route => handler
 	e.GET("/", handler.HomeHandler)
 	e.GET("/about", handler.AboutHandler)
+	e.GET("/baca_menu", handler.BacaData)
 	e.Static("/static", "assets")
+	
 
 	// Start the Echo server
 	e.Logger.Fatal(e.Start(":1323"))
