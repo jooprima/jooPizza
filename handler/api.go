@@ -34,7 +34,7 @@ func TambahData(c echo.Context) error {
 	var nama = c.FormValue("Nama_menu")
 	var deskripsi = c.FormValue("Deskripsi")
 	var harga = c.FormValue("Harga")
-	var deskripsi = c.FormValue("Jenis")
+	var jenis = c.FormValue("Jenis")
 	var url_gambar = c.FormValue("Url_gambar")
 
 	_, err = db.Exec("insert into tbl_menu values(?,?,?,?,?,?)", nil, nama, deskripsi, url_gambar, jenis, harga)
@@ -45,6 +45,30 @@ func TambahData(c echo.Context) error {
 	} else {
 		fmt.Println("Menu berhasil ditambahkan")
 		return c.JSON(http.StatusOK, "Berhasil menambahkan menu")
+	}
+
+}
+
+func UbahData(c echo.Context) error {
+	db, err := server.Koneksi()
+
+	defer db.Close()
+
+	var id = c.FormValue("Id_menu")
+	var nama = c.FormValue("Nama_menu")
+	var deskripsi = c.FormValue("Deskripsi")
+	var harga = c.FormValue("Harga")
+	var jenis = c.FormValue("Jenis")
+	var url_gambar = c.FormValue("Url_gambar")
+
+	_, err = db.Exec("update tbl_menu set nama_menu = ? , deskripsi = ? , harga = ? , jenis = ? , url_gambar = ? where id_menu = ?", nama, deskripsi, harga, jenis, url_gambar, id)
+
+	if err != nil {
+		fmt.Println("Menu gagal diubah")
+		return c.JSON(http.StatusOK, "Gagal menambahkan menu")
+	} else {
+		fmt.Println("Menu berhasil ditambahkan")
+		return c.JSON(http.StatusOK, "Berhasil mengubah menu")
 	}
 
 }

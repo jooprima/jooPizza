@@ -44,6 +44,7 @@ func main() {
 	e.GET("/baca_menu", handler.BacaData)
 	e.Static("/static", "assets")
 	e.POST("/tambah_menu", handler.TambahData)
+	e.PUT("/ubah_menu", handler.UbahData)
 
 	// Start the Echo server
 	e.Logger.Fatal(e.Start(":1323"))
