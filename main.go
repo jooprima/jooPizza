@@ -43,7 +43,7 @@ func main() {
 	e.GET("/about", handler.AboutHandler)
 	e.GET("/baca_menu", handler.BacaData)
 	e.Static("/static", "assets")
-	
+	e.POST("/tambah_menu", handler.TambahData)
 
 	// Start the Echo server
 	e.Logger.Fatal(e.Start(":1323"))
